@@ -1,127 +1,3 @@
-// const express = require('express');
-// const router = express.Router();
-// const Image = require('../models/Image');
-
-// // קבלת כל התמונות
-// router.get('/', async (req, res) => {
-//   try {
-//     const images = await Image.find();
-//     res.json(images);
-//   } catch (err) {
-//     res.status(500).json({ message: 'שגיאה בקבלת התמונות' });
-//   }
-// });
-
-// // הוספת תמונות חדשות (פעם אחת בלבד לייבוא הראשוני)
-// router.post('/bulk', async (req, res) => {
-//   try {
-//     const images = req.body;
-//     await Image.insertMany(images);
-//     res.status(201).json({ message: 'התמונות נוספו בהצלחה' });
-//   } catch (err) {
-//     res.status(500).json({ message: 'שגיאה בהוספת התמונות' });
-//   }
-// });
-
-// module.exports = router;
-
-
-// const express = require('express');
-// const router = express.Router();
-// const Image = require('../models/Image');
-
-// console.log("✅ images route loaded");
-
-// router.get('/', async (req, res) => {
-//   console.log("📸 קיבלנו בקשה ל־/api/images");
-//   try {
-//     const images = await Image.find();
-//     res.json(images);
-//   } catch (err) {
-//     console.error('❌ שגיאה בקבלת תמונות:', err);
-//     res.status(500).json({ message: 'שגיאה בקבלת התמונות' });
-//   }
-// });
-
-// module.exports = router;
-
-
-// const express = require('express');
-// const router = express.Router();
-// const Image = require('../models/Image');
-// const multer = require('multer');
-// const { storage } = require('../cloudinaryConfig'); // 👈 חדש
-// const upload = multer({ storage });
-
-// console.log("✅ images route loaded");
-
-// router.get('/', async (req, res) => {
-//   try {
-//     const images = await Image.find();
-//     res.json(images);
-//   } catch (err) {
-//     res.status(500).json({ message: 'שגיאה בקבלת התמונות' });
-//   }
-// });
-
-// // ⬇️ נתיב חדש להעלאת תמונה אחת
-// router.post('/upload', upload.single('image'), async (req, res) => {
-//   try {
-//     const { title, description, room, styles, designer } = req.body;
-//     const image = new Image({
-//       title,
-//       description,
-//       room,
-//       styles: styles.split(',').map(s => s.trim()),
-//       designer,
-//       imageUrl: req.file.path,
-//     });
-//     await image.save();
-//     res.status(201).json({ message: 'תמונה נשמרה בהצלחה', image });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ message: 'שגיאה בהעלאת תמונה' });
-//   }
-// });
-
-// module.exports = router;
-
-
-
-
-// const express = require('express');
-// const router = express.Router();
-// const Image = require('../models/Image');
-
-// console.log("✅ images route loaded");
-
-// router.get('/', async (req, res) => {
-//   console.log("📸 קיבלנו בקשה ל־/api/images");
-//   try {
-//     const images = await Image.find();
-//     console.log(" Images from MongoDB:", images);  
-
-//     const formattedImages = images.map(img => ({
-//       id: img.id || img._id.toString(),
-//       title: img.title || '',
-//       room: img.room || '',
-//       styles: img.styles || [],
-//       imageUrl: img.url || img.imageUrl || '',
-//       designer: img.designer || ''
-//     }));
-
-//     console.log("📤 Sending images to frontend:", cleanImages.length);
-
-//     res.json(formattedImages);
-//   } catch (err) {
-//     console.error('❌ שגיאה בקבלת תמונות:', err);
-//     res.status(500).json({ message: 'שגיאה בקבלת התמונות' });
-//   }
-// });
-
-// module.exports = router;
-
-
 
 
 
@@ -129,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 const Image = require('../models/Image');
 
-console.log("✅ images route loaded");
+console.log(" images route loaded");
 
 router.get('/', async (req, res) => {
   console.log("📸 קיבלנו בקשה ל־/api/images");
@@ -165,7 +41,7 @@ router.get('/', async (req, res) => {
 
 
 
-// ✅ יצירת תמונה חדשה (POST)
+//  יצירת תמונה חדשה (POST)
 router.post('/', async (req, res) => {
   try {
     const newImage = new Image(req.body);
@@ -189,7 +65,7 @@ async function createImage(data) {
   }
 }
 
-// ✅ עדכון תמונה לפי ID (PUT)
+//  עדכון תמונה לפי ID (PUT)
 router.put('/:id', async (req, res) => {
   try {
     const updatedImage = await Image.findByIdAndUpdate(req.params.id, req.body, {
@@ -206,7 +82,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// ✅ מחיקת תמונה לפי ID (DELETE)
+//  מחיקת תמונה לפי ID (DELETE)
 async function deleteImageById(id) {
   try {
     const deleted = await Image.findByIdAndDelete(id);
