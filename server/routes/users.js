@@ -8,7 +8,7 @@ const User = require('../models/User');
 router.post('/', async (req, res) => {
   try {
     const { userName, email, password } = req.body;
-    const username = userName; // ✅ תיקון כאן
+    const username = userName; 
 
     const existingUser = await User.findOne({ username });
     if (existingUser) {
@@ -125,80 +125,8 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// מחיקת משתמש לפי ID
-// router.delete('/:password', async (req, res) => {
-//     console.log("התחיל למחוק");
-
-//   try {
-//     console.log("התחיל למחוק");
-    
-//     const deletedUser = await User.findOneAndDelete({ password: req.params.password });
-//     if (!deletedUser) {
-//       return res.status(404).json({ success: false, message: 'משתמש לא נמצא' });
-//     }
-//     res.json({ success: true, message: 'המשתמש נמחק' });
-//   } catch (err) { 
-// console.log(err.message)
-//     res.status(500).json({ success: false, message: 'שגיאה במחיקה', error: err.message });
-//   }
-// });
-
-// // routes/users.js
-// router.delete('/', async (req, res) => {
-//   try {
-//     const { username, password } = req.body;
-
-//     // חיפוש משתמש לפי שם משתמש וסיסמה
-//     const deletedUser = await User.findOneAndDelete({ username, password });
-
-//     if (!deletedUser) {
-//       return res.status(404).json({ success: false, message: 'שם משתמש או סיסמה שגויים' });
-//     }
-
-//     res.json({ success: true, message: 'המשתמש נמחק בהצלחה' });
-//   } catch (err) {
-//     console.error('שגיאה במחיקת המשתמש:', err.message);
-//     res.status(500).json({ success: false, message: 'שגיאה בשרת', error: err.message });
-//   }
-// });
-// ב־routes/users.js
-// router.delete('/', async (req, res) => {
-//   try {
-//     console.log("📥 בקשת מחיקה התקבלה:", req.body);
-//     const { username, password } = req.body;
-
-//     const deletedUser = await User.findOneAndDelete({ username, password });
-
-//     if (!deletedUser) {
-//       console.log("❌ לא נמצא משתמש למחיקה עם:", username, password);
-//       return res.status(404).json({ success: false, message: 'שם משתמש או סיסמה שגויים' });
-//     }
-
-//     console.log("✅ המשתמש נמחק:", deletedUser.username);
-//     res.json({ success: true, message: 'המשתמש נמחק בהצלחה' });
-//   } catch (err) {
-//     console.error('שגיאה במחיקת המשתמש:', err.message);
-//     res.status(500).json({ success: false, message: 'שגיאה בשרת', error: err.message });
-//   }
-// });
 
 
-
-// router.delete('/delete', async (req, res) => {
-//   const { username, password } = req.body;
-//   try {
-//     const user = await User.findOne({ username, password }); // ← תיקון כאן
-//     if (!user) {
-//       return res.status(404).json({ success: false, message: 'משתמש לא נמצא או סיסמה שגויה' });
-//     }
-
-//     await User.deleteOne({ _id: user._id });
-//     res.json({ success: true, message: 'המשתמש נמחק בהצלחה' });
-//   } catch (err) {
-//     console.error('שגיאה במחיקת משתמש:', err);
-//     res.status(500).json({ success: false, message: 'שגיאת שרת' });
-//   }
-// });
 
 router.delete('/delete', async (req, res) => {
   const { username, password } = req.query; // ← שים לב: query, לא body
