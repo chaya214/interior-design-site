@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { images, ImageData } from "../data";
 import { useState } from "react";
 
-const isLoggedIn = false; // להחליף בהמשך למצב אמיתי
+const isLoggedIn = false;
 
 export default function PhotoDetail() {
   const { id } = useParams();
@@ -37,7 +37,7 @@ export default function PhotoDetail() {
             </p>
           )}
 
-          <button
+{/*           <button
             onClick={() => {
               if (!isLoggedIn) {
                 alert("יש להתחבר כדי להוסיף למועדפים");
@@ -50,7 +50,7 @@ export default function PhotoDetail() {
             } text-white`}
           >
             {favorited ? "הוסר מהמועדפים" : "הוסף למועדפים"}
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
